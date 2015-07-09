@@ -12,8 +12,8 @@ import MapKit
 
 class MapViewController: UIViewController, MKMapViewDelegate {
     
-    var udacityStudents = [UdacityStudent]()
-
+    var udacityStudents = [StudentInfo]()
+   // var annotations = [MKPointAnnotation]()
     
     @IBOutlet weak var refresh: UIBarButtonItem!
     @IBOutlet weak var post: UIBarButtonItem!
@@ -23,12 +23,6 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         addAnnotations()
     }
     
-//    func logoutTapped(sender: AnyObject) {
-        
-    //    PFUser.logOutInBackground()
-//        self.dismissViewControllerAnimated(true, completion: nil)
-        
-//    }
     
     @IBAction func postStudentInfo(sender: AnyObject) {
         let postvc = self.storyboard?.instantiateViewControllerWithIdentifier("PostViewController") as! PostViewController
@@ -68,9 +62,10 @@ class MapViewController: UIViewController, MKMapViewDelegate {
                 
                 for item in OTMClient.sharedInstance.studentInfo! {
                     
-                    let studentInfo = UdacityStudent(data: item)
+                    let studentInfo = StudentInfo(data: item)
+                    println("data = \(StudentInfo(data: item))")
                     self.udacityStudents.append(studentInfo)
-                    println("load student data")
+                    println("load student data \(self.udacityStudents)")
                }
 
             } else {
@@ -88,7 +83,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         
         if res != nil {
             
-            self.statusCodeChecker(res!)
+            self.statusCodeCheck(res!)
             
         } else {
             
@@ -134,12 +129,12 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         
     }
     
-    func statusCodeChecker(statusCode: Int) {
+    func statusCodeCheck(statusCode: Int) {
         
         switch statusCode {
             
         case 400:
-            self.displayAlertView("Sorry, we couldn't get data for you...")
+            self.displayAlertView("No Data Found")
         default:
             break
             
@@ -149,7 +144,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     
     func displayAlertView(message: String) {
         
-        let alertController = UIAlertController(title: "Data loading Failed", message: message, preferredStyle: .Alert)
+        let alertController = UIAlertController(title: "Data load Failed", message: message, preferredStyle: .Alert)
         
         let action = UIAlertAction(title: "OK", style: .Default) { (action) in
             

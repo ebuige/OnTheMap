@@ -19,10 +19,8 @@ extension OTMClient {
         // MARK: URLs
         static let ParseURLSecure : String = "https://api.parse.com/1/classes/StudentLocation"
         static let UdacityURLSecure : String = "https://www.udacity.com/api/"
-        static let BaseURL : String = "http://api.themoviedb.org/3/"
-        static let BaseURLSecure : String = "https://api.themoviedb.org/3/"
-        static let AuthorizationURL : String = "https://www.themoviedb.org/authenticate/"
         
+        // MARK: PIN
         static let reuseId = "pin"
         
     }
@@ -30,7 +28,6 @@ extension OTMClient {
     // MARK: - Methods
     struct Methods {
         
-        // MARK: Account
         static let Session = "session"
         static let Users = "users/"
         

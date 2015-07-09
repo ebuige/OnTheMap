@@ -54,45 +54,7 @@ class ViewController: UIViewController {
         OTMClient.sharedInstance.username = username.text
         OTMClient.sharedInstance.password = password.text
         getSessionID()
-            /*1. set the parameter */
-            
-            /* 2. Build the URL */
-  //          let urlString = OTMClient.Constants.UdacityURLSecure + OTMClient.Methods.Session
-//            let url = NSURL(string: urlString)!
-//        println("username = \(self.username.text) password = \(self.password.text)")
-            
-            /* 3. Configure the request */
-  //          let request = NSMutableURLRequest(URL: url)
-//            request.HTTPMethod = "POST"
-//            request.addValue("application/json", forHTTPHeaderField: "Accept")
-//            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-//         request.HTTPBody = "{\"udacity\": {\"username\": \"\(self.username.text)\", \"password\": \"\(self.password.text)\"}}".dataUsingEncoding(NSUTF8StringEncoding)
-         //   request.HTTPBody = "{\"udacity\": {\"username\": \"eb4635@att.com\", \"password\": \"2020$K1ll5!\"}}".dataUsingEncoding(NSUTF8StringEncoding)
-//            let session = NSURLSession.sharedSession()
-        
- //       println("body = \(request.HTTPBody)")
-        
-            
-            
-            /* 4. Make the request */
-//            let task = session.dataTaskWithRequest(request) { data, response, error in
-                
-//                if error != nil { // Handle error…
-//                    println("Error connecting to Udacity")
-//                }
-                
-                /* 5. Parse the data */
-//                var parsingError: NSError? = nil
-//                let newData = data.subdataWithRange(NSMakeRange(5, data.length - 5)) /* subset response data! */
-//                println(NSString(data: newData, encoding: NSUTF8StringEncoding))
-                
-//                var parsedResponse = NSJSONSerialization.JSONObjectWithData(newData, options: NSJSONReadingOptions.AllowFragments, error: nil) as! [String:AnyObject]
-                
- //               println("Response: \(parsedResponse)")
-   //             self.completeLogin()
- //           }
- //           task.resume()
-            
+                       
         }
     
     func getSessionID() {

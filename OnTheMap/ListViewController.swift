@@ -13,7 +13,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBOutlet weak var post: UIBarButtonItem!
     @IBOutlet weak var refresh: UIBarButtonItem!
     @IBOutlet weak var tableView: UITableView!
-    var udacityStudents = [UdacityStudent]()
+    var udacityStudents = [StudentInfo]()
     var urlString: String?
     
     
@@ -52,7 +52,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 
                 for item in OTMClient.sharedInstance.studentInfo! {
                     
-                    let studentInfo = UdacityStudent(data: item)
+                    let studentInfo = StudentInfo(data: item)
                     self.udacityStudents.append(studentInfo)
                     dispatch_async(dispatch_get_main_queue()) {
                         self.tableView.reloadData()

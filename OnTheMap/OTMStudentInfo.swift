@@ -8,9 +8,7 @@
 
 import Foundation
 
-import Foundation
-
-class UdacityStudent: NSObject {
+class StudentInfo: NSObject {
     
     let latitude: Double
     let longitude: Double
