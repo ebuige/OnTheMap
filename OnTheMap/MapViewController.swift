@@ -13,16 +13,13 @@ import MapKit
 class MapViewController: UIViewController, MKMapViewDelegate {
     
     var udacityStudents = [StudentInfo]()
-   // var annotations = [MKPointAnnotation]()
     
     @IBOutlet weak var refresh: UIBarButtonItem!
     @IBOutlet weak var post: UIBarButtonItem!
     
-    
     @IBAction func refreshStudentInfo(sender: AnyObject) {
         addAnnotations()
     }
-    
     
     @IBAction func postStudentInfo(sender: AnyObject) {
         let postvc = self.storyboard?.instantiateViewControllerWithIdentifier("PostViewController") as! PostViewController
@@ -42,11 +39,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     func addAnnotations() {
         
         getStudentLocation()
-        println("after get students")
-        mapView.addAnnotations(udacityStudents)
-        println("after add anotes")
-        mapView.showAnnotations(udacityStudents, animated: true)
-        println("after show anotes")
+        
     }
     
     func getStudentLocation() {
@@ -63,10 +56,12 @@ class MapViewController: UIViewController, MKMapViewDelegate {
                 for item in OTMClient.sharedInstance.studentInfo! {
                     
                     let studentInfo = StudentInfo(data: item)
-                    println("data = \(StudentInfo(data: item))")
                     self.udacityStudents.append(studentInfo)
-                    println("load student data \(self.udacityStudents)")
+    
                }
+                self.mapView.addAnnotations(self.udacityStudents)
+                self.mapView.showAnnotations(self.udacityStudents, animated: true)
+
 
             } else {
                 

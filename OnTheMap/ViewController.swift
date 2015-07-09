@@ -51,6 +51,8 @@ class ViewController: UIViewController {
     
     @IBAction func login(sender: AnyObject) {
         
+        
+        
         OTMClient.sharedInstance.username = username.text
         OTMClient.sharedInstance.password = password.text
         getSessionID()
