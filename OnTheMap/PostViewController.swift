@@ -19,6 +19,7 @@ class PostViewController: UIViewController, UITextFieldDelegate, MKMapViewDelega
     var lon: Double?
     @IBOutlet weak var submitButton: UIButton!
     @IBOutlet weak var findButton: UIButton!
+    @IBOutlet weak var questionLabel: UILabel!
     
     @IBAction func cancelPost(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
@@ -94,9 +95,11 @@ class PostViewController: UIViewController, UITextFieldDelegate, MKMapViewDelega
                 self.linkTextField.hidden = false
                 self.submitButton.hidden = false
                 self.findButton.hidden = true
+                self.questionLabel.hidden = true
   //              self.view.backgroundColor = UIColor.rgb(0, g: 89, b: 187, alpha: 1)
                 self.mapView.addAnnotation(self.location!)
                 self.mapView.showAnnotations([self.location!], animated: true)
+                self.mapTextField.hidden = true
                 
             }
             
@@ -116,6 +119,11 @@ class PostViewController: UIViewController, UITextFieldDelegate, MKMapViewDelega
         
         super.viewWillAppear(animated)
  //       mapTextField.text = nil
+        self.mapView.hidden = true
+        self.linkTextField.hidden = true
+        self.submitButton.hidden = true
+        
+        
         subscribeToKeyboardNotification()
         
     }
@@ -146,7 +154,7 @@ class PostViewController: UIViewController, UITextFieldDelegate, MKMapViewDelega
         
         let action = UIAlertAction(title: "OK", style: .Default) { (action) in
             
-            self.dismissViewControllerAnimated(true, completion: nil)
+         //   self.dismissViewControllerAnimated(true, completion: nil)
             
         }
         

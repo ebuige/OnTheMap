@@ -103,14 +103,14 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <items>
                                     <navigationItem title="On The Map" id="37B-Wf-3Of">
-                                        <barButtonItem key="leftBarButtonItem" image="Pin" id="dl1-92-2Li">
+                                        <barButtonItem key="leftBarButtonItem" title="Logout" id="dl1-92-2Li">
                                             <connections>
-                                                <action selector="postStudentInfo:" destination="kPN-GC-ZxA" id="av0-tc-y6b"/>
+                                                <action selector="logout:" destination="kPN-GC-ZxA" id="RY5-7h-TR9"/>
                                             </connections>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="tEA-bX-Udz">
+                                        <barButtonItem key="rightBarButtonItem" image="Pin" id="tEA-bX-Udz">
                                             <connections>
-                                                <action selector="refreshStudentInfo:" destination="kPN-GC-ZxA" id="qAf-Hy-xDB"/>
+                                                <action selector="postStudentInfo:" destination="kPN-GC-ZxA" id="XR6-wP-08N"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -140,9 +140,9 @@
                     </toolbarItems>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="logout" destination="dl1-92-2Li" id="exw-IT-EUA"/>
                         <outlet property="mapView" destination="sOk-TT-not" id="hLx-mw-bEe"/>
-                        <outlet property="post" destination="dl1-92-2Li" id="NLH-Hw-W5Q"/>
-                        <outlet property="refresh" destination="tEA-bX-Udz" id="4KP-st-Iln"/>
+                        <outlet property="post" destination="tEA-bX-Udz" id="1yx-gZ-7FE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9xo-qD-m4w" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -165,14 +165,14 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <items>
                                     <navigationItem title="On The Map" id="FWe-uB-rcK">
-                                        <barButtonItem key="leftBarButtonItem" image="Pin" id="lQ5-1v-c7b">
+                                        <barButtonItem key="leftBarButtonItem" title="Logout" id="lQ5-1v-c7b">
                                             <connections>
-                                                <action selector="postStudentInfo:" destination="NH1-Yo-vNW" id="bHE-zm-834"/>
+                                                <action selector="logout:" destination="NH1-Yo-vNW" id="76J-uQ-cwn"/>
                                             </connections>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="5Vj-va-ipt">
+                                        <barButtonItem key="rightBarButtonItem" image="Pin" id="5Vj-va-ipt">
                                             <connections>
-                                                <action selector="refreshStudentInfo:" destination="NH1-Yo-vNW" id="A3v-wQ-gTM"/>
+                                                <action selector="postStudentInfo:" destination="NH1-Yo-vNW" id="Uur-7N-rEq"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -247,8 +247,8 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="List" image="List" id="HhV-LI-Pmf"/>
                     <connections>
-                        <outlet property="post" destination="lQ5-1v-c7b" id="hth-9o-hpW"/>
-                        <outlet property="refresh" destination="5Vj-va-ipt" id="tCP-0y-P9l"/>
+                        <outlet property="logout" destination="lQ5-1v-c7b" id="eEd-t6-Bmy"/>
+                        <outlet property="post" destination="5Vj-va-ipt" id="PeZ-oH-3Hl"/>
                         <outlet property="tableView" destination="ZbO-q3-bQv" id="CfM-pV-RR4"/>
                     </connections>
                 </viewController>
@@ -322,7 +322,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="53" y="205" width="308" height="30"/>
+                                    <rect key="frame" x="46" y="206" width="308" height="30"/>
                                 </variation>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Where are you studying today?" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Azl-OB-Dgq">
@@ -331,45 +331,34 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="83" y="70" width="249" height="87"/>
+                                    <rect key="frame" x="76" y="101" width="237" height="20"/>
                                 </variation>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FLO-FK-OtY">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <state key="normal" title="Find On The Map">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="141" y="315" width="119" height="30"/>
+                                    <rect key="frame" x="135" y="264" width="119" height="30"/>
                                 </variation>
                                 <connections>
                                     <action selector="buttonTapped:" destination="z41-SH-TlJ" eventType="touchUpInside" id="kT2-yS-dUY"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="epv-uc-SnV">
-                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <state key="normal" title="Submit">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="170" y="340" width="49" height="30"/>
-                                </variation>
-                                <connections>
-                                    <action selector="submitTapped:" destination="z41-SH-TlJ" eventType="touchUpInside" id="42f-JJ-x30"/>
-                                </connections>
-                            </button>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="6V4-Xv-oHl">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="64" y="410" width="240" height="128"/>
+                                    <rect key="frame" x="0.0" y="266" width="400" height="334"/>
                                 </variation>
                             </mapView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Link" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bmh-pe-M6A">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Link To Share Here" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bmh-pe-M6A">
                                 <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="53" y="165" width="308" height="30"/>
+                                    <rect key="frame" x="46" y="146" width="308" height="30"/>
                                 </variation>
                             </textField>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lxl-gr-kV4">
@@ -387,6 +376,20 @@
                                     <rect key="frame" x="0.0" y="20" width="368" height="44"/>
                                 </variation>
                             </navigationBar>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="epv-uc-SnV">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Submit">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="170" y="285" width="49" height="30"/>
+                                </variation>
+                                <connections>
+                                    <action selector="submitTapped:" destination="z41-SH-TlJ" eventType="touchUpInside" id="42f-JJ-x30"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <variation key="default">
@@ -394,10 +397,10 @@
                                 <exclude reference="aVG-21-zFJ"/>
                                 <exclude reference="Azl-OB-Dgq"/>
                                 <exclude reference="FLO-FK-OtY"/>
-                                <exclude reference="epv-uc-SnV"/>
                                 <exclude reference="6V4-Xv-oHl"/>
                                 <exclude reference="bmh-pe-M6A"/>
                                 <exclude reference="lxl-gr-kV4"/>
+                                <exclude reference="epv-uc-SnV"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -405,10 +408,10 @@
                                 <include reference="aVG-21-zFJ"/>
                                 <include reference="Azl-OB-Dgq"/>
                                 <include reference="FLO-FK-OtY"/>
-                                <include reference="epv-uc-SnV"/>
                                 <include reference="6V4-Xv-oHl"/>
                                 <include reference="bmh-pe-M6A"/>
                                 <include reference="lxl-gr-kV4"/>
+                                <include reference="epv-uc-SnV"/>
                             </mask>
                         </variation>
                     </view>
@@ -417,12 +420,13 @@
                         <outlet property="linkTextField" destination="bmh-pe-M6A" id="tna-bI-e8A"/>
                         <outlet property="mapTextField" destination="aVG-21-zFJ" id="8rU-Lc-B9k"/>
                         <outlet property="mapView" destination="6V4-Xv-oHl" id="ZVa-hP-Muy"/>
+                        <outlet property="questionLabel" destination="Azl-OB-Dgq" id="tXd-y8-9Ga"/>
                         <outlet property="submitButton" destination="epv-uc-SnV" id="IWD-pE-dDr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qtE-aC-6ki" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-6487.5" y="-2529"/>
+            <point key="canvasLocation" x="-6712.5" y="-2529"/>
         </scene>
         <!--OntheMapTabBarController-->
         <scene sceneID="dgL-kn-zoR">

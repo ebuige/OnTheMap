@@ -14,8 +14,24 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     
     var udacityStudents = [StudentInfo]()
     
+    @IBOutlet weak var logout: UIBarButtonItem!
     @IBOutlet weak var refresh: UIBarButtonItem!
     @IBOutlet weak var post: UIBarButtonItem!
+    
+    @IBAction func logout(sender: AnyObject) {
+        OTMClient.sharedInstance.taskForDeleteMethod() { (success: Bool, res: Int?, error: NSError?) -> Void in
+            
+            if success {
+                
+                self.dismissViewControllerAnimated(true, completion: nil)
+                
+            } else {
+                
+                self.displayAlertView("Failed to Logout")
+            }
+        }
+
+    }
     
     @IBAction func refreshStudentInfo(sender: AnyObject) {
         addAnnotations()
@@ -139,7 +155,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     
     func displayAlertView(message: String) {
         
-        let alertController = UIAlertController(title: "Download Error / Possible Network Issue", message: message, preferredStyle: .Alert)
+        let alertController = UIAlertController(title: "Possible Network Issue", message: message, preferredStyle: .Alert)
         
         let action = UIAlertAction(title: "OK", style: .Default) { (action) in
             

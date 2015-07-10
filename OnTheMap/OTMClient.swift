@@ -54,29 +54,17 @@ class OTMClient : NSObject {
             
             if let res = response as? NSHTTPURLResponse {
                 
-                println("result = \(res.statusCode)")
-                
                 if res.statusCode != 200 {
-                    
-                    println("set success false")
                     
                     completionHandler(success: false, res: res.statusCode, error: postError)
                     
-                    println("after completion handler")
-                    
                 } else {
-    
-            
 
             if postError != nil {
-                
-                println("downloadingError not nil")
                 
                 completionHandler(success: false, res: nil, error: postError)
                 
                 } else {
-                
-                println("postError = \(postError)")
                 
                 let newData = data.subdataWithRange(NSMakeRange(5, data.length - 5))
                 var error: NSError?
@@ -87,7 +75,6 @@ class OTMClient : NSObject {
                         let key = account["key"] as! String
                         
                         self.userId = key
-                        println("user id after set = \(self.userId)")
                     }
                     
                     if let session = parsedData["session"] as? NSDictionary {
@@ -264,9 +251,33 @@ class OTMClient : NSObject {
     }
 
     
-    // MARK: - GET
+    // MARK: - Logout
     
-    
+    func taskForDeleteMethod(completionHandler: (success: Bool, res: Int?, error: NSError?) -> Void) {
+        
+        let urlString = OTMClient.Constants.UdacityURLSecure + OTMClient.Methods.Session
+        let url = NSURL(string: urlString)!
+        let request = NSMutableURLRequest(URL: url)
+        request.HTTPMethod = "DELETE"
+        var xsrfCookie: NSHTTPCookie? = nil
+        let sharedCookieStorage = NSHTTPCookieStorage.sharedHTTPCookieStorage()
+        for cookie in sharedCookieStorage.cookies as! [NSHTTPCookie] {
+            if cookie.name == "XSRF-TOKEN" { xsrfCookie = cookie }
+        }
+        if let xsrfCookie = xsrfCookie {
+            request.addValue(xsrfCookie.value!, forHTTPHeaderField: "X-XSRF-Token")
+        }
+        let session = NSURLSession.sharedSession()
+        let task = session.dataTaskWithRequest(request) { data, response, error in
+            if error != nil {
+                completionHandler(success: false, res: nil, error: error)
+            }
+            completionHandler(success: true, res: nil, error: error)
+        }
+        task.resume()
+        
+    }
+
         
     // MARK: - POST
     

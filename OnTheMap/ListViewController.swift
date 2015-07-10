@@ -11,7 +11,8 @@ import UIKit
 class ListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var post: UIBarButtonItem!
-    @IBOutlet weak var refresh: UIBarButtonItem!
+
+    @IBOutlet weak var logout: UIBarButtonItem!
     @IBOutlet weak var tableView: UITableView!
     var udacityStudents = [StudentInfo]()
     var urlString: String?
@@ -20,7 +21,24 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBAction func refreshStudentInfo(sender: AnyObject) {
         getStudentinfo()
     }
+    
         
+    @IBAction func logout(sender: AnyObject) {
+        OTMClient.sharedInstance.taskForDeleteMethod() { (success: Bool, res: Int?, error: NSError?) -> Void in
+            
+            if success {
+                
+                self.dismissViewControllerAnimated(true, completion: nil)
+                
+            } else {
+                
+                self.displayAlertView("Failed to Logout")
+            }
+        }
+
+    }
+    
+    
     @IBAction func postStudentInfo(sender: AnyObject) {
         let postvc = self.storyboard?.instantiateViewControllerWithIdentifier("PostViewController") as! PostViewController
         self.presentViewController(postvc, animated: true, completion: nil)
@@ -134,7 +152,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func displayAlertView(message: String) {
         
-        let alertController = UIAlertController(title: "Download Error / Possible Network Issue", message: message, preferredStyle: .Alert)
+        let alertController = UIAlertController(title: "Possible Network Issue", message: message, preferredStyle: .Alert)
         
         let action = UIAlertAction(title: "OK", style: .Default) { (action) in
             
