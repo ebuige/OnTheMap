@@ -116,7 +116,7 @@
                                     </navigationItem>
                                 </items>
                                 <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="0.0" y="15" width="400" height="44"/>
+                                    <rect key="frame" x="0.0" y="15" width="384" height="44"/>
                                 </variation>
                             </navigationBar>
                         </subviews>
@@ -165,20 +165,20 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <items>
                                     <navigationItem title="On The Map" id="FWe-uB-rcK">
-                                        <barButtonItem key="leftBarButtonItem" image="Pin" id="LkN-9n-Mzc">
+                                        <barButtonItem key="leftBarButtonItem" image="Pin" id="lQ5-1v-c7b">
                                             <connections>
-                                                <action selector="postStudentInfo:" destination="NH1-Yo-vNW" id="fNn-rK-WNE"/>
+                                                <action selector="postStudentInfo:" destination="NH1-Yo-vNW" id="bHE-zm-834"/>
                                             </connections>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="eIc-Ye-gBa">
+                                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="5Vj-va-ipt">
                                             <connections>
-                                                <action selector="refreshStudentInfo:" destination="NH1-Yo-vNW" id="uYX-eG-tqO"/>
+                                                <action selector="refreshStudentInfo:" destination="NH1-Yo-vNW" id="A3v-wQ-gTM"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
                                 </items>
                                 <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="0.0" y="20" width="400" height="44"/>
+                                    <rect key="frame" x="0.0" y="20" width="384" height="44"/>
                                 </variation>
                             </navigationBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="ZbO-q3-bQv">
@@ -247,8 +247,8 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="List" image="List" id="HhV-LI-Pmf"/>
                     <connections>
-                        <outlet property="post" destination="LkN-9n-Mzc" id="kDG-bM-6U6"/>
-                        <outlet property="refresh" destination="eIc-Ye-gBa" id="Bay-lE-cK3"/>
+                        <outlet property="post" destination="lQ5-1v-c7b" id="hth-9o-hpW"/>
+                        <outlet property="refresh" destination="5Vj-va-ipt" id="tCP-0y-P9l"/>
                         <outlet property="tableView" destination="ZbO-q3-bQv" id="CfM-pV-RR4"/>
                     </connections>
                 </viewController>
@@ -308,7 +308,6 @@
         <!--Post View Controller-->
         <scene sceneID="LFm-m9-hX7">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="qtE-aC-6ki" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="PostViewController" title="Post View Controller" id="z41-SH-TlJ" customClass="PostViewController" customModule="OnTheMap" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="2rz-VG-x0D"/>
@@ -373,6 +372,21 @@
                                     <rect key="frame" x="53" y="165" width="308" height="30"/>
                                 </variation>
                             </textField>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lxl-gr-kV4">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <items>
+                                    <navigationItem id="6bq-HN-ep0">
+                                        <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="gd1-a7-Hba">
+                                            <connections>
+                                                <action selector="cancelPost:" destination="z41-SH-TlJ" id="29w-A3-Fui"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="0.0" y="20" width="368" height="44"/>
+                                </variation>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <variation key="default">
@@ -383,6 +397,7 @@
                                 <exclude reference="epv-uc-SnV"/>
                                 <exclude reference="6V4-Xv-oHl"/>
                                 <exclude reference="bmh-pe-M6A"/>
+                                <exclude reference="lxl-gr-kV4"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -393,6 +408,7 @@
                                 <include reference="epv-uc-SnV"/>
                                 <include reference="6V4-Xv-oHl"/>
                                 <include reference="bmh-pe-M6A"/>
+                                <include reference="lxl-gr-kV4"/>
                             </mask>
                         </variation>
                     </view>
@@ -404,6 +420,7 @@
                         <outlet property="submitButton" destination="epv-uc-SnV" id="IWD-pE-dDr"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qtE-aC-6ki" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-6487.5" y="-2529"/>
         </scene>

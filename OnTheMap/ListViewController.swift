@@ -101,29 +101,15 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         var url : NSURL
         url = NSURL(string: self.urlString!)!
         UIApplication.sharedApplication().openURL(url)
-   //     performSegueWithIdentifier("WebLink", sender: self)
         
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        
-        if segue.identifier == "webLink" {
-            
-           if let webvc = segue.destinationViewController as? WebViewController {
-                
-                webvc.urlString = self.urlString!
-                
-            }
-            
-        }
-        
-    }
     
     func displayError(success: Bool, res: Int?, error: NSError?) {
         
         if res != nil {
             
-            self.statusCodeChecker(res!)
+            self.statusCodeCheck(res!)
             
         } else {
             
@@ -133,14 +119,12 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
     }
     
-    func statusCodeChecker(statusCode: Int) {
+    func statusCodeCheck(statusCode: Int) {
         
         switch statusCode {
             
-        case 401:
-            self.displayAlertView("Either username(email) or password is not correct")
-        case 403:
-            self.displayAlertView("You are not allowed to access to this")
+        case 400:
+            self.displayAlertView("No Data Found")
         default:
             break
             
@@ -150,7 +134,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func displayAlertView(message: String) {
         
-        let alertController = UIAlertController(title: "Login Failed", message: message, preferredStyle: .Alert)
+        let alertController = UIAlertController(title: "Download Error / Possible Network Issue", message: message, preferredStyle: .Alert)
         
         let action = UIAlertAction(title: "OK", style: .Default) { (action) in
             

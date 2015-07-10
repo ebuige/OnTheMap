@@ -139,7 +139,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     
     func displayAlertView(message: String) {
         
-        let alertController = UIAlertController(title: "Data load Failed", message: message, preferredStyle: .Alert)
+        let alertController = UIAlertController(title: "Download Error / Possible Network Issue", message: message, preferredStyle: .Alert)
         
         let action = UIAlertAction(title: "OK", style: .Default) { (action) in
             

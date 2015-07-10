@@ -51,22 +51,37 @@ class ViewController: UIViewController {
     
     @IBAction func login(sender: AnyObject) {
         
-        
-        
-        OTMClient.sharedInstance.username = username.text
-        OTMClient.sharedInstance.password = password.text
-        getSessionID()
-                       
+        var loginData = (username.text.isEmpty, password.text.isEmpty)
+        switch loginData {
+            
+        case (true, true):
+            self.displayAlertView("You have to enter username and password to log in")
+        case (true, false):
+            self.displayAlertView("You have to enter username to log in")
+        case (false, true):
+            self.displayAlertView("You have to enter password to log in")
+        case (false, false):
+            OTMClient.sharedInstance.username = username.text
+            OTMClient.sharedInstance.password = password.text
+            getSessionID()
+
+        default:
+            break
+            
         }
+
+    }
     
     func getSessionID() {
         
         OTMClient.sharedInstance.taskForPostMethod() { (success: Bool, res: Int?, error: NSError?) -> Void in
             
             if success {
+                println("success")
                 self.completeLogin()
             } else {
-                self.displayError(error)
+                println("in display error")
+                self.displayError(success, res: res, error:error)
             }
         }
         
@@ -83,20 +98,72 @@ class ViewController: UIViewController {
                 })
                 
             } else {
-                self.displayError(error)
+                self.displayError(success, res: res, error:error)
             }
         }
 
        }
 
-    func displayError(error: NSError?) {
-        dispatch_async(dispatch_get_main_queue(), {
-            if let errorString = error {
-//self.debugTextLabel.text = errorString
-            }
-        })
+  //  func displayError(error: NSError?) {
+ //       dispatch_async(dispatch_get_main_queue(), {
+ //           if let errorString = error {
+ //
+ //           }
+ //       })
+ //   }
+    
+    func displayError(success: Bool, res: Int?, error: NSError?) {
+        
+        if res != nil {
+            
+            self.statusCodeCheck(res!)
+            
+        } else {
+            
+            self.displayAlertView("Networking Error")
+            
+        }
+        
+    }
+   
+    // MARK: Check status code
+    
+    func statusCodeCheck(statusCode: Int) {
+        
+        switch statusCode {
+            
+        case 403:
+            self.displayAlertView("Either username(email) or password is not correct")
+        case 401:
+            self.displayAlertView("You are not allowed to access to this")
+        default:
+            break
+            
+        }
+        
     }
 
+    // MARK: - Display alert view controller for failed login
+    
+    func displayAlertView(message: String) {
+        
+        let alertController = UIAlertController(title: "Login Failed", message: message, preferredStyle: .Alert)
+        
+        let action = UIAlertAction(title: "OK", style: .Default) { (action) in
+            
+            self.dismissViewControllerAnimated(true, completion: nil)
+            
+        }
+        
+        alertController.addAction(action)
+        
+        dispatch_async(dispatch_get_main_queue()) {
+            
+            self.presentViewController(alertController, animated: true, completion: nil)
+            
+        }
+        
+    }
     
     // MARK: - Keyboard Fixes
     

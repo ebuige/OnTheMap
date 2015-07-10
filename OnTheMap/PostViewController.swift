@@ -19,6 +19,11 @@ class PostViewController: UIViewController, UITextFieldDelegate, MKMapViewDelega
     var lon: Double?
     @IBOutlet weak var submitButton: UIButton!
     @IBOutlet weak var findButton: UIButton!
+    
+    @IBAction func cancelPost(sender: AnyObject) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
     @IBAction func submitTapped(sender: AnyObject) {
         
         if !self.linkTextField.text.isEmpty {
@@ -49,13 +54,13 @@ class PostViewController: UIViewController, UITextFieldDelegate, MKMapViewDelega
                 
             } else {
                 
-                self.displayAlertView("The url is invalid.")
+                self.displayAlertView("The URL is invalid.")
                 
             }
             
         } else {
             
-            self.displayAlertView("You gotta put a link to submit.")
+            self.displayAlertView("Please enter a link to submit.")
             
         }
         
@@ -77,7 +82,7 @@ class PostViewController: UIViewController, UITextFieldDelegate, MKMapViewDelega
             
             if error != nil {
                 
-                self.displayAlertView("Sorry, we couldn't find your location...")
+                self.displayAlertView("The Location Could Not Be Found")
                 
             }
             if let placemark = placemarks?[0] as? CLPlacemark {
@@ -122,12 +127,12 @@ class PostViewController: UIViewController, UITextFieldDelegate, MKMapViewDelega
         
     }
     
-    func statusCodeChecker(statusCode: Int) {
+    func statusCodeCheck(statusCode: Int) {
         
         switch statusCode {
             
         case 400:
-            self.displayAlertView("Sorry, we couldn't post your data.")
+            self.displayAlertView("Your data could not be posted")
         default:
             break
             
@@ -137,7 +142,7 @@ class PostViewController: UIViewController, UITextFieldDelegate, MKMapViewDelega
     
     func displayAlertView(message: String) {
         
-        let alertController = UIAlertController(title: "Error", message: message, preferredStyle: .Alert)
+        let alertController = UIAlertController(title: "Post Error", message: message, preferredStyle: .Alert)
         
         let action = UIAlertAction(title: "OK", style: .Default) { (action) in
             
@@ -200,7 +205,7 @@ class PostViewController: UIViewController, UITextFieldDelegate, MKMapViewDelega
         
         if res != nil {
             
-            self.statusCodeChecker(res!)
+            self.statusCodeCheck(res!)
             
         } else {
             

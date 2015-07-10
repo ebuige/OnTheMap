@@ -50,23 +50,33 @@ class OTMClient : NSObject {
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.HTTPBody = "{\"udacity\": {\"username\": \"\(self.username!)\", \"password\": \"\(self.password!)\"}}".dataUsingEncoding(NSUTF8StringEncoding)
-        let task = session.dataTaskWithRequest(request) { data, response, error in
+        let task = session.dataTaskWithRequest(request) { data, response, postError in
             
             if let res = response as? NSHTTPURLResponse {
                 
+                println("result = \(res.statusCode)")
+                
                 if res.statusCode != 200 {
                     
-                    completionHandler(success: false, res: res.statusCode, error: error)
+                    println("set success false")
                     
-                }
-                
-            }
+                    completionHandler(success: false, res: res.statusCode, error: postError)
+                    
+                    println("after completion handler")
+                    
+                } else {
+    
+            
 
-            if error != nil {
+            if postError != nil {
                 
-                completionHandler(success: false, res: nil, error: error)
+                println("downloadingError not nil")
+                
+                completionHandler(success: false, res: nil, error: postError)
                 
                 } else {
+                
+                println("postError = \(postError)")
                 
                 let newData = data.subdataWithRange(NSMakeRange(5, data.length - 5))
                 var error: NSError?
@@ -79,6 +89,7 @@ class OTMClient : NSObject {
                         self.userId = key
                         println("user id after set = \(self.userId)")
                     }
+                    
                     if let session = parsedData["session"] as? NSDictionary {
                         
                         let id = session["id"] as! String
@@ -94,6 +105,8 @@ class OTMClient : NSObject {
             
         }
         
+        }
+        }
         task.resume()
         
     }
