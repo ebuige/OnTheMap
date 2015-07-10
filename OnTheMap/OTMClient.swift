@@ -20,20 +20,15 @@ class OTMClient : NSObject {
     var objectId: String?
     var studentInfo: [[String: AnyObject]]?
     var uniqueKey: String?
-//    var firstName: String?
-//    var lastName: String?
+    var firstName: String? { didSet{ OTMClient.sharedInstance.firstName = firstName! } }
+    var lastName: String? { didSet{ OTMClient.sharedInstance.lastName = lastName! } }
     var mapString: String?
     var mediaURL: String?
     var latitude: Double?
     var longitude: Double?
     var userId: String? { didSet{ OTMClient.sharedInstance.uniqueKey = userId! } }
     var sessionId: String?
-    var firstName: String? { didSet{ OTMClient.sharedInstance.firstName = firstName! } }
-    var lastName: String? { didSet{ OTMClient.sharedInstance.lastName = lastName! } }
     
-    /* Authentication state */
- //   var sessionID : String? = nil
-//    var userID : String? = nil
     
     override init() {
         session = NSURLSession.sharedSession()
@@ -213,7 +208,6 @@ class OTMClient : NSObject {
         let task = session.dataTaskWithRequest(request) { data, response, downloadingError in
             
             if let res = response as? NSHTTPURLResponse {
-                
                 if res.statusCode != 200 {
                     
                     completionHandler(success: false, res: res.statusCode, error: nil)
@@ -278,131 +272,4 @@ class OTMClient : NSObject {
     }
 
         
-    // MARK: - POST
-    
-        
-    /* Use this unFavoriteButtonTouchUpInside as a reference if you need it 😄 */
-    
-    //    func unFavoriteButtonTouchUpInside(sender: AnyObject) {
-    //
-    //        /* TASK: Remove movie as favorite, then update favorite buttons */
-    //
-    //        /* 1. Set the parameters */
-    //        let methodParameters = [
-    //            "api_key": appDelegate.apiKey,
-    //            "session_id": appDelegate.sessionID!
-    //        ]
-    //
-    //        /* 2. Build the URL */
-    //        let urlString = appDelegate.baseURLSecureString + "account/\(appDelegate.userID!)/favorite" + appDelegate.escapedParameters(methodParameters)
-    //        let url = NSURL(string: urlString)!
-    //
-    //        /* 3. Configure the request */
-    //        let request = NSMutableURLRequest(URL: url)
-    //        request.HTTPMethod = "POST"
-    //        request.addValue("application/json", forHTTPHeaderField: "Accept")
-    //        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-    //        request.HTTPBody = "{\"media_type\": \"movie\",\"media_id\": \(self.movie!.id),\"favorite\":false}".dataUsingEncoding(NSUTF8StringEncoding)
-    //
-    //        /* 4. Make the request */
-    //        let task = session.dataTaskWithRequest(request) { data, response, downloadError in
-    //
-    //            if let error = downloadError? {
-    //                println("Could not complete the request \(error)")
-    //            } else {
-    //
-    //                /* 5. Parse the data */
-    //                var parsingError: NSError? = nil
-    //                let parsedResult = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments, error: &parsingError) as NSDictionary
-    //
-    //                /* 6. Use the data! */
-    //                if let status_code = parsedResult["status_code"] as? Int {
-    //                    if status_code == 13 {
-    //                        dispatch_async(dispatch_get_main_queue()) {
-    //                            self.unFavoriteButton.hidden = true
-    //                            self.favoriteButton.hidden = false
-    //                        }
-    //                    }
-    //                } else {
-    //                    println("Could not find status_code in \(parsedResult)")
-    //                }
-    //            }
-    //        }
-    //
-    //        /* 7. Start the request */
-    //        task.resume()
-    //    }
-    
-    // MARK: - Helpers
-    
-    /* Helper: Substitute the key for the value that is contained within the method name */
-    class func subtituteKeyInMethod(method: String, key: String, value: String) -> String? {
-        if method.rangeOfString("{\(key)}") != nil {
-            return method.stringByReplacingOccurrencesOfString("{\(key)}", withString: value)
-        } else {
-            return nil
-        }
-    }
-    
-    /* Helper: Given a response with error, see if a status_message is returned, otherwise return the previous error */
-    class func errorForData(data: NSData?, response: NSURLResponse?, error: NSError) -> NSError {
-        
-        if let parsedResult = NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments, error: nil) as? [String : AnyObject] {
-            
-            if let errorMessage = parsedResult[OTMClient.JSONResponseKeys.StatusMessage] as? String {
-                
-                let userInfo = [NSLocalizedDescriptionKey : errorMessage]
-                
-                return NSError(domain: "TMDB Error", code: 1, userInfo: userInfo)
-            }
-        }
-        
-        return error
-    }
-    
-    /* Helper: Given raw JSON, return a usable Foundation object */
-    class func parseJSONWithCompletionHandler(data: NSData, completionHandler: (result: AnyObject!, error: NSError?) -> Void) {
-        
-        var parsingError: NSError? = nil
-        
-        let parsedResult: AnyObject? = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments, error: &parsingError)
-        
-        if let error = parsingError {
-            completionHandler(result: nil, error: error)
-        } else {
-            completionHandler(result: parsedResult, error: nil)
-        }
-    }
-    
-    /* Helper function: Given a dictionary of parameters, convert to a string for a url */
-    class func escapedParameters(parameters: [String : AnyObject]) -> String {
-        
-        var urlVars = [String]()
-        
-        for (key, value) in parameters {
-            
-            /* Make sure that it is a string value */
-            let stringValue = "\(value)"
-            
-            /* Escape it */
-            let escapedValue = stringValue.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())
-            
-            /* Append it */
-            urlVars += [key + "=" + "\(escapedValue!)"]
-            
-        }
-        
-        return (!urlVars.isEmpty ? "?" : "") + join("&", urlVars)
-    }
-    
-    // MARK: - Shared Instance
-    
-//    class func sharedInstance() -> OTMClient {
-        
-//        struct Singleton {
-//            static var sharedInstance = OTMClient()
-//        }
-//
-//        return Singleton.sharedInstance
-//    }
 }

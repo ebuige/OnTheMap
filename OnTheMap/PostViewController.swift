@@ -31,6 +31,7 @@ class PostViewController: UIViewController, UITextFieldDelegate, MKMapViewDelega
             
             let url = NSURL(string: self.linkTextField.text!)
             if url != nil {
+                
                 if (url!.scheme != nil && url!.host != nil) {
                     
                     OTMClient.sharedInstance.mapString = self.mapTextField.text
@@ -48,15 +49,13 @@ class PostViewController: UIViewController, UITextFieldDelegate, MKMapViewDelega
                             self.displayError(success, res: res, error:error)
                             
                         }
-                        
                     }
+                } else {
+                    
+                    self.displayAlertView("The URL is invalid.")
                     
                 }
-                
-            } else {
-                
-                self.displayAlertView("The URL is invalid.")
-                
+
             }
             
         } else {
@@ -66,6 +65,7 @@ class PostViewController: UIViewController, UITextFieldDelegate, MKMapViewDelega
         }
         
     }
+    
     @IBOutlet weak var linkTextField: UITextField!
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var mapTextField: UITextField!
@@ -96,7 +96,6 @@ class PostViewController: UIViewController, UITextFieldDelegate, MKMapViewDelega
                 self.submitButton.hidden = false
                 self.findButton.hidden = true
                 self.questionLabel.hidden = true
-  //              self.view.backgroundColor = UIColor.rgb(0, g: 89, b: 187, alpha: 1)
                 self.mapView.addAnnotation(self.location!)
                 self.mapView.showAnnotations([self.location!], animated: true)
                 self.mapTextField.hidden = true
