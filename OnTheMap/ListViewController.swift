@@ -60,8 +60,6 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func getStudentinfo() {
         
-        println("call student info")
-        
         OTMClient.sharedInstance.taskForGetMethod(100) {
             
             (success: Bool, res: Int?, error: NSError?) -> Void in
@@ -75,8 +73,6 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     dispatch_async(dispatch_get_main_queue()) {
                         self.tableView.reloadData()
                     }
-
-                    
                 }
                 
             } else {
@@ -84,17 +80,12 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 self.displayError(success, res: res, error:error)
                 
             }
-            
-            
         }
-        
-        
     }
     
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-      //  println("student count = \(udacityStudents.count)")
         return udacityStudents.count
         
     }

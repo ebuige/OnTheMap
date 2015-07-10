@@ -134,11 +134,9 @@
                             </mask>
                         </variation>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Map" image="Map" selectedImage="Map" id="0Qw-Cz-Npa"/>
-                    <toolbarItems>
-                        <barButtonItem image="Map" id="l72-ly-2zT"/>
-                    </toolbarItems>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <tabBarItem key="tabBarItem" title="Map" image="Map" id="iB9-yc-N3q"/>
+                    <toolbarItems/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="logout" destination="dl1-92-2Li" id="exw-IT-EUA"/>
                         <outlet property="mapView" destination="sOk-TT-not" id="hLx-mw-bEe"/>

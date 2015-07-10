@@ -101,7 +101,6 @@ class OTMClient : NSObject {
     // MARK: - task to get user info
     
     func taskForGETMethod(completionHandler: (success: Bool, res: Int?, error: NSError?) -> Void) {
-        println("user id = \(self.userId)")
         let urlString = OTMClient.Constants.UdacityURLSecure + OTMClient.Methods.Users + userId!
         let url = NSURL(string: urlString)
         let request = NSMutableURLRequest(URL: url!)

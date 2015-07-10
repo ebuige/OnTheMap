@@ -77,10 +77,8 @@ class ViewController: UIViewController {
         OTMClient.sharedInstance.taskForPostMethod() { (success: Bool, res: Int?, error: NSError?) -> Void in
             
             if success {
-                println("success")
                 self.completeLogin()
             } else {
-                println("in display error")
                 self.displayError(success, res: res, error:error)
             }
         }
@@ -92,7 +90,6 @@ class ViewController: UIViewController {
         OTMClient.sharedInstance.taskForGETMethod() { (success: Bool, res: Int?, error: NSError?) -> Void in
             if success {
                 dispatch_async(dispatch_get_main_queue(), {
-                    //         self.debugTextLabel.text = ""
                     let controller = self.storyboard!.instantiateViewControllerWithIdentifier("OntheMapTabBarController") as! UITabBarController
                     self.presentViewController(controller, animated: true, completion: nil)
                 })
@@ -104,14 +101,7 @@ class ViewController: UIViewController {
 
        }
 
-  //  func displayError(error: NSError?) {
- //       dispatch_async(dispatch_get_main_queue(), {
- //           if let errorString = error {
- //
- //           }
- //       })
- //   }
-    
+      
     func displayError(success: Bool, res: Int?, error: NSError?) {
         
         if res != nil {
