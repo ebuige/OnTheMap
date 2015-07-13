@@ -13,16 +13,12 @@ class ViewController: UIViewController {
     
     
     @IBOutlet weak var username: UITextField!
-    
     @IBOutlet weak var password: UITextField!
-    
     @IBOutlet weak var loginButton: UIButton!
     
     var keyboardAdjusted = false
     var lastKeyboardOffset : CGFloat = 0.0
     var tapRecognizer: UITapGestureRecognizer? = nil
-    
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +27,6 @@ class ViewController: UIViewController {
         self.tapRecognizer = UITapGestureRecognizer(target: self, action: "handleSingleTap:")
         self.tapRecognizer?.numberOfTapsRequired = 1
     }
-
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -125,7 +120,7 @@ class ViewController: UIViewController {
         case 403:
             self.displayAlertView("Either username(email) or password is not correct")
         case 401:
-            self.displayAlertView("You are not allowed to access to this")
+            self.displayAlertView("Access to this resource is restricted")
         default:
             break
             

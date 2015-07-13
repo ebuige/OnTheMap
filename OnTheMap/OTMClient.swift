@@ -17,8 +17,8 @@ class OTMClient : NSObject {
    /* Variables */
     var username: String?
     var password: String?
-    var objectId: String?
     var studentInfo: [[String: AnyObject]]?
+    var objectId: String?
     var uniqueKey: String?
     var firstName: String? { didSet{ OTMClient.sharedInstance.firstName = firstName! } }
     var lastName: String? { didSet{ OTMClient.sharedInstance.lastName = lastName! } }

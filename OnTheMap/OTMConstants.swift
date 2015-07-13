@@ -33,11 +33,4 @@ extension OTMClient {
         
     }
     
-    // MARK: - URL Keys
- //   struct URLKeys {
-        
-  //      static let UserID = "user_id"
-        
-  //  }
-    
 }

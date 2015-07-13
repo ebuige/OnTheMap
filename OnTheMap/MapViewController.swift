@@ -136,8 +136,6 @@ class MapViewController: UIViewController, MKMapViewDelegate {
             
         }
         
-        
-        
     }
     
     func statusCodeCheck(statusCode: Int) {

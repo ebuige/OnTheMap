@@ -45,9 +45,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
         
     override func viewDidLoad() {
-        
         super.viewDidLoad()
-      //  getStudentinfo()
         
     }
     
@@ -55,7 +53,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         super.viewWillAppear(animated)
         getStudentinfo()
         
-            }
+    }
 
     
     func getStudentinfo() {

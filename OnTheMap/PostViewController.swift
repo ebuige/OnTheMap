@@ -115,12 +115,9 @@ class PostViewController: UIViewController, UITextFieldDelegate, MKMapViewDelega
     override func viewWillAppear(animated: Bool) {
         
         super.viewWillAppear(animated)
- //       mapTextField.text = nil
         self.mapView.hidden = true
         self.linkTextField.hidden = true
         self.submitButton.hidden = true
-        
-        
         subscribeToKeyboardNotification()
         
     }
