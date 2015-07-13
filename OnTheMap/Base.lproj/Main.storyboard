@@ -345,20 +345,12 @@
                                     <action selector="buttonTapped:" destination="z41-SH-TlJ" eventType="touchUpInside" id="kT2-yS-dUY"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="epv-uc-SnV">
-                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Submit">
-                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="6V4-Xv-oHl">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="170" y="244" width="49" height="30"/>
+                                    <rect key="frame" x="0.0" y="266" width="400" height="334"/>
                                 </variation>
-                                <connections>
-                                    <action selector="submitTapped:" destination="z41-SH-TlJ" eventType="touchUpInside" id="42f-JJ-x30"/>
-                                </connections>
-                            </button>
+                            </mapView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Link To Share Here" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bmh-pe-M6A">
                                 <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -382,23 +374,31 @@
                                     <rect key="frame" x="10" y="28" width="368" height="44"/>
                                 </variation>
                             </navigationBar>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="6V4-Xv-oHl">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="epv-uc-SnV">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Submit">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
                                 <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="0.0" y="266" width="400" height="334"/>
+                                    <rect key="frame" x="170" y="178" width="49" height="30"/>
                                 </variation>
-                            </mapView>
+                                <connections>
+                                    <action selector="submitTapped:" destination="z41-SH-TlJ" eventType="touchUpInside" id="42f-JJ-x30"/>
+                                </connections>
+                            </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="aVG-21-zFJ"/>
                                 <exclude reference="Azl-OB-Dgq"/>
                                 <exclude reference="FLO-FK-OtY"/>
-                                <exclude reference="epv-uc-SnV"/>
+                                <exclude reference="6V4-Xv-oHl"/>
                                 <exclude reference="bmh-pe-M6A"/>
                                 <exclude reference="lxl-gr-kV4"/>
-                                <exclude reference="6V4-Xv-oHl"/>
+                                <exclude reference="epv-uc-SnV"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -406,10 +406,10 @@
                                 <include reference="aVG-21-zFJ"/>
                                 <include reference="Azl-OB-Dgq"/>
                                 <include reference="FLO-FK-OtY"/>
-                                <include reference="epv-uc-SnV"/>
+                                <include reference="6V4-Xv-oHl"/>
                                 <include reference="bmh-pe-M6A"/>
                                 <include reference="lxl-gr-kV4"/>
-                                <include reference="6V4-Xv-oHl"/>
+                                <include reference="epv-uc-SnV"/>
                             </mask>
                         </variation>
                     </view>
