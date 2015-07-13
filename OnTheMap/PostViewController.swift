@@ -20,12 +20,15 @@ class PostViewController: UIViewController, UITextFieldDelegate, MKMapViewDelega
     @IBOutlet weak var submitButton: UIButton!
     @IBOutlet weak var findButton: UIButton!
     @IBOutlet weak var questionLabel: UILabel!
+    @IBOutlet weak var linkTextField: UITextField!
+    @IBOutlet weak var mapTextField: UITextField!
+    @IBOutlet weak var mapView: MKMapView!
     
     @IBAction func cancelPost(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
-    @IBAction func submitTapped(sender: AnyObject) {
+    @IBAction func submitLocation(sender: AnyObject) {
         
         if !self.linkTextField.text.isEmpty {
             
@@ -66,10 +69,7 @@ class PostViewController: UIViewController, UITextFieldDelegate, MKMapViewDelega
         
     }
     
-    @IBOutlet weak var linkTextField: UITextField!
-    @IBOutlet weak var mapView: MKMapView!
-    @IBOutlet weak var mapTextField: UITextField!
-    @IBAction func buttonTapped(sender: AnyObject) {
+        @IBAction func findLocation(sender: AnyObject) {
         
         searchGeocodeForLocation()
         
@@ -109,8 +109,6 @@ class PostViewController: UIViewController, UITextFieldDelegate, MKMapViewDelega
     override func viewDidLoad() {
         
         super.viewDidLoad()
-  //      mapTextField.delegate = self
-  //      linkTextField.delegate = self
         
     }
     
@@ -152,8 +150,6 @@ class PostViewController: UIViewController, UITextFieldDelegate, MKMapViewDelega
         let alertController = UIAlertController(title: "Post Error", message: message, preferredStyle: .Alert)
         
         let action = UIAlertAction(title: "OK", style: .Default) { (action) in
-            
-         //   self.dismissViewControllerAnimated(true, completion: nil)
             
         }
         

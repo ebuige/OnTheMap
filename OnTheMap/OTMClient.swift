@@ -26,8 +26,9 @@ class OTMClient : NSObject {
     var mediaURL: String?
     var latitude: Double?
     var longitude: Double?
-    var userId: String? { didSet{ OTMClient.sharedInstance.uniqueKey = userId! } }
     var sessionId: String?
+    var userId: String? { didSet{ OTMClient.sharedInstance.uniqueKey = userId! } }
+    
     
     
     override init() {

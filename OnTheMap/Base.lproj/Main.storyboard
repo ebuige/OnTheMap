@@ -76,7 +76,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-9616.5" y="-1965"/>
+            <point key="canvasLocation" x="-9376.5" y="-1985"/>
         </scene>
         <!--Map View-->
         <scene sceneID="XXE-FR-N3T">
@@ -254,55 +254,6 @@
             </objects>
             <point key="canvasLocation" x="-7440" y="-1827"/>
         </scene>
-        <!--Web View-->
-        <scene sceneID="qTg-Vn-Bk2">
-            <objects>
-                <viewController storyboardIdentifier="WebViewController" title="Web View" id="kDv-VR-pZf" customClass="WebViewController" customModule="OnTheMap" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="TE9-2S-pDl"/>
-                        <viewControllerLayoutGuide type="bottom" id="Oea-O2-4DV"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="TdF-OZ-D4m">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="crP-01-0ME">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                                <items>
-                                    <barButtonItem title="Item" id="tDS-4o-2Ia"/>
-                                </items>
-                                <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="0.0" y="556" width="400" height="44"/>
-                                </variation>
-                            </toolbar>
-                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qmn-JI-GE2">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="0.0" y="17" width="400" height="539"/>
-                                </variation>
-                            </webView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="crP-01-0ME"/>
-                                <exclude reference="Qmn-JI-GE2"/>
-                            </mask>
-                        </variation>
-                        <variation key="widthClass=compact">
-                            <mask key="subviews">
-                                <include reference="crP-01-0ME"/>
-                                <include reference="Qmn-JI-GE2"/>
-                            </mask>
-                        </variation>
-                    </view>
-                    <navigationItem key="navigationItem" id="He5-OI-ywo"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="s6s-Tc-ZGc" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-6583.5" y="-1827"/>
-        </scene>
         <!--Post View Controller-->
         <scene sceneID="LFm-m9-hX7">
             <objects>
@@ -342,7 +293,7 @@
                                     <rect key="frame" x="135" y="264" width="119" height="30"/>
                                 </variation>
                                 <connections>
-                                    <action selector="buttonTapped:" destination="z41-SH-TlJ" eventType="touchUpInside" id="kT2-yS-dUY"/>
+                                    <action selector="findLocation:" destination="z41-SH-TlJ" eventType="touchUpInside" id="ylk-jU-vsw"/>
                                 </connections>
                             </button>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="6V4-Xv-oHl">
@@ -385,7 +336,7 @@
                                     <rect key="frame" x="170" y="178" width="49" height="30"/>
                                 </variation>
                                 <connections>
-                                    <action selector="submitTapped:" destination="z41-SH-TlJ" eventType="touchUpInside" id="42f-JJ-x30"/>
+                                    <action selector="submitLocation:" destination="z41-SH-TlJ" eventType="touchUpInside" id="k97-Um-Xz0"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -415,9 +366,9 @@
                     </view>
                     <connections>
                         <outlet property="findButton" destination="FLO-FK-OtY" id="dor-FH-M7H"/>
-                        <outlet property="linkTextField" destination="bmh-pe-M6A" id="tna-bI-e8A"/>
-                        <outlet property="mapTextField" destination="aVG-21-zFJ" id="8rU-Lc-B9k"/>
-                        <outlet property="mapView" destination="6V4-Xv-oHl" id="ZVa-hP-Muy"/>
+                        <outlet property="linkTextField" destination="bmh-pe-M6A" id="2mP-ab-7w5"/>
+                        <outlet property="mapTextField" destination="aVG-21-zFJ" id="5Zx-nz-qYG"/>
+                        <outlet property="mapView" destination="6V4-Xv-oHl" id="kN5-eQ-oAP"/>
                         <outlet property="questionLabel" destination="Azl-OB-Dgq" id="tXd-y8-9Ga"/>
                         <outlet property="submitButton" destination="epv-uc-SnV" id="IWD-pE-dDr"/>
                     </connections>
