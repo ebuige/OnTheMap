@@ -48,48 +48,48 @@ class OTMClient : NSObject {
         request.HTTPBody = "{\"udacity\": {\"username\": \"\(self.username!)\", \"password\": \"\(self.password!)\"}}".dataUsingEncoding(NSUTF8StringEncoding)
         let task = session.dataTaskWithRequest(request) { data, response, postError in
             
-            if let res = response as? NSHTTPURLResponse {
-                
-                if res.statusCode != 200 {
-                    
-                    completionHandler(success: false, res: res.statusCode, error: postError)
-                    
-                } else {
-
             if postError != nil {
                 
                 completionHandler(success: false, res: nil, error: postError)
                 
+            } else {
+
+            if let res = response as? NSHTTPURLResponse {
+
+                if res.statusCode != 200 {
+                    completionHandler(success: false, res: res.statusCode, error: postError)
+
                 } else {
+                        
+                        let newData = data.subdataWithRange(NSMakeRange(5, data.length - 5))
+                        var error: NSError?
+                        if let parsedData = NSJSONSerialization.JSONObjectWithData(newData, options: NSJSONReadingOptions.AllowFragments, error: &error) as? NSDictionary {
+                            
+                            if let account = parsedData["account"] as? NSDictionary {
+                                
+                                let key = account["key"] as! String
+                                
+                                self.userId = key
+                            }
+                            
+                            if let session = parsedData["session"] as? NSDictionary {
+                                
+                                let id = session["id"] as! String
+                                self.sessionId = id
+                                
+                            }
+                            
+                            completionHandler(success: true, res: nil, error: nil)
+                            
+                        }
+                        
+                    } //end of parsed logic
+                    
+                } //end of post error
                 
-                let newData = data.subdataWithRange(NSMakeRange(5, data.length - 5))
-                var error: NSError?
-                if let parsedData = NSJSONSerialization.JSONObjectWithData(newData, options: NSJSONReadingOptions.AllowFragments, error: &error) as? NSDictionary {
-                    
-                    if let account = parsedData["account"] as? NSDictionary {
-                        
-                        let key = account["key"] as! String
-                        
-                        self.userId = key
-                    }
-                    
-                    if let session = parsedData["session"] as? NSDictionary {
-                        
-                        let id = session["id"] as! String
-                        self.sessionId = id
-                        
-                    }
-                    
-                    completionHandler(success: true, res: nil, error: nil)
-                    
-                }
-                
-            }
-            
-        }
+            } // end of status code check
         
-        }
-        }
+        }  // end of task
         task.resume()
         
     }
@@ -107,7 +107,6 @@ class OTMClient : NSObject {
                 if res.statusCode != 200 {
                     
                     completionHandler(success: false, res: res.statusCode, error: downloadingError)
-                    
                 }
                 
             }

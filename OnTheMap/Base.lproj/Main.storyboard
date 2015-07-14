@@ -339,6 +339,12 @@
                                     <action selector="submitLocation:" destination="z41-SH-TlJ" eventType="touchUpInside" id="k97-Um-Xz0"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="uTf-ZP-zay">
+                                <rect key="frame" x="-10" y="-10" width="20" height="20"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="184" y="341" width="20" height="20"/>
+                                </variation>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <variation key="default">
@@ -350,6 +356,7 @@
                                 <exclude reference="bmh-pe-M6A"/>
                                 <exclude reference="lxl-gr-kV4"/>
                                 <exclude reference="epv-uc-SnV"/>
+                                <exclude reference="uTf-ZP-zay"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -361,10 +368,12 @@
                                 <include reference="bmh-pe-M6A"/>
                                 <include reference="lxl-gr-kV4"/>
                                 <include reference="epv-uc-SnV"/>
+                                <include reference="uTf-ZP-zay"/>
                             </mask>
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="uTf-ZP-zay" id="WBi-8w-QHx"/>
                         <outlet property="findButton" destination="FLO-FK-OtY" id="dor-FH-M7H"/>
                         <outlet property="linkTextField" destination="bmh-pe-M6A" id="2mP-ab-7w5"/>
                         <outlet property="mapTextField" destination="aVG-21-zFJ" id="5Zx-nz-qYG"/>

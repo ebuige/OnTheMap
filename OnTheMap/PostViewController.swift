@@ -23,6 +23,7 @@ class PostViewController: UIViewController, UITextFieldDelegate, MKMapViewDelega
     @IBOutlet weak var linkTextField: UITextField!
     @IBOutlet weak var mapTextField: UITextField!
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     @IBAction func cancelPost(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
@@ -77,9 +78,13 @@ class PostViewController: UIViewController, UITextFieldDelegate, MKMapViewDelega
     
     func searchGeocodeForLocation() {
         
-        
+        activityIndicator.hidden = false
+        activityIndicator.startAnimating()
         var geocoder = CLGeocoder()
         geocoder.geocodeAddressString(mapTextField.text){ (placemarks: [AnyObject]!, error: NSError!) -> Void in
+            
+            self.activityIndicator.stopAnimating()
+            self.activityIndicator.hidden = true
             
             if error != nil {
                 
@@ -118,6 +123,7 @@ class PostViewController: UIViewController, UITextFieldDelegate, MKMapViewDelega
         self.mapView.hidden = true
         self.linkTextField.hidden = true
         self.submitButton.hidden = true
+        self.activityIndicator.hidden = true
         subscribeToKeyboardNotification()
         
     }
