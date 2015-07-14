@@ -8,7 +8,7 @@
 
 import Foundation
 
-class StudentInfo: NSObject {
+struct StudentInfo {
     
     let latitude: Double
     let longitude: Double

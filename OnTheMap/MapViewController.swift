@@ -12,7 +12,8 @@ import MapKit
 
 class MapViewController: UIViewController, MKMapViewDelegate {
     
-    var udacityStudents = [StudentInfo]()
+    var appDelegate: AppDelegate!
+    var annotations = [MKPointAnnotation]()
     
     @IBOutlet weak var logout: UIBarButtonItem!
     @IBOutlet weak var refresh: UIBarButtonItem!
@@ -47,6 +48,8 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        /* Get the app delegate */
+        appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         addAnnotations()
         
     }
@@ -62,7 +65,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         
         if OTMClient.sharedInstance.studentInfo != nil {
             
-           self.mapView.removeAnnotations(udacityStudents)
+           self.mapView.removeAnnotations(self.annotations)
             
         }
         OTMClient.sharedInstance.taskForGetMethod(100) { (success: Bool, res: Int?, error: NSError?) -> Void in
@@ -71,12 +74,28 @@ class MapViewController: UIViewController, MKMapViewDelegate {
                 
                 for item in OTMClient.sharedInstance.studentInfo! {
                     
+                    let lat = CLLocationDegrees(item["latitude"] as! Double)
+                    let long = CLLocationDegrees(item["longitude"] as! Double)
+                    
+                    let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
+                    
+                    let first = item["firstName"] as! String
+                    let last = item["lastName"] as! String
+                    let mediaURL = item["mediaURL"] as! String
+                    var annotation = MKPointAnnotation()
+                    annotation.coordinate = coordinate
+                    annotation.title = "\(first) \(last)"
+                    annotation.subtitle = mediaURL
+
+                    self.annotations.append(annotation)
+                    
                     let studentInfo = StudentInfo(data: item)
-                    self.udacityStudents.append(studentInfo)
+                    self.appDelegate.udacityStudents.append(studentInfo)
     
                }
-                self.mapView.addAnnotations(self.udacityStudents)
-                self.mapView.showAnnotations(self.udacityStudents, animated: true)
+       //           self.mapView.addAnnotation(self.annotations)
+                self.mapView.addAnnotations(self.annotations)
+                self.mapView.showAnnotations(self.annotations, animated: true)
 
 
             } else {

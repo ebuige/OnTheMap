@@ -30,7 +30,6 @@ class OTMClient : NSObject {
     var userId: String? { didSet{ OTMClient.sharedInstance.uniqueKey = userId! } }
     
     
-    
     override init() {
         session = NSURLSession.sharedSession()
         super.init()
